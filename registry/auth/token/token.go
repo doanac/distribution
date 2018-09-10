@@ -209,6 +209,7 @@ func (t *Token) VerifySigningKey(verifyOpts VerifyOptions) (signingKey libtrust.
 		signingKey, err = parseAndVerifyRawJWK(rawJWK, verifyOpts)
 	case len(keyID) > 0:
 		signingKey = verifyOpts.TrustedKeys[keyID]
+		log.Info("Andy trusted keys are: %s", verifyOpts.TrustedKeys)
 		if signingKey == nil {
 			err = fmt.Errorf("token signed by untrusted key with ID: %q", keyID)
 		}
